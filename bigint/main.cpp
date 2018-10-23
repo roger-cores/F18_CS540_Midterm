@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cmath>
 /*
  * -------------------------------------------------------------------------------------------------
  * The BigInt class represents an arbitrary precision integer.
@@ -18,10 +18,56 @@
 
 
 // Your implementation here ...
+using namespace std;
+class BigInt {
+	public:
+		BigInt(BigInt &i){
+			number = i.number;
+			size = i.size;
+		}
+		BigInt(int array*, int sz){
+			number = array;
+			size = sz;
+		}
+		ostream& operator<<(ostream &out, const BigInt &b){
+			int i=0;
+			for(i=0; i<b.size; i++){
+				out << b.number[i];
+			}
+			return out;
+		}
+		BigInt BigInt::operator+(BigInt const &b) const {
+			
+		}
+		BigInt BigInt::operator+(int const &i) const {
+			
+		}
+		BigInt &operator=(const BigInt &s) {
+			free(number);
+			number = s.number;
+			size = s.size;
+			
+		}
+	private:
+		int number*;
+		int size;
+}
 
-
-void // Return type is wrong.
-operator"" _bi(const char *) {
+BigInt // Return type is wrong.
+operator"" _bi(const char * s) {
+	int size = 0;
+	for (; *s != '\0'; s++) {
+		size++; //find the size
+	}
+	size++; //zero indexed
+	number = new int[size];
+	int i=0;
+	for (; *s != '\0'; s++) {// store the number into an array
+		int n = *s - '0';
+		number[i] = n;
+		i++;
+	}
+	return new BigInt(number, size);
 }
 
 int

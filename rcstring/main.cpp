@@ -1,6 +1,7 @@
 #include <cstddef>
 #include <cassert>
 #include <iostream>
+#include <string.h>
 
 /*
  * -------------------------------------------------------------------------------------------------
@@ -20,10 +21,48 @@
 
 // Your implementation here ...
 
+using namespace std;
 
+class String {
+	public:
+		String(const char* s="") : str(strdup(s)), m_sz(strlen(s)) {
+			this->m_rc = 1;
+		}
+		~String(){
+			free(str);
+		}
+		String(String &s) : str(s.str), m_sz(s.m_sz) {
+			
+		}
+		String &operator=(const String &s) {
+			free(str);
+			str = strdup(s.str);
+			m_sz = s.m_sz;
+		}
+		const char * &operator*() {
+			return str;
+		}
+		ostream& operator<<(ostream &out, const String &s){
+			out << s.str;
+			return out;
+		}
+		int length() {
+			return m_sz;
+		}
+		void clear() {
+			free(str);
+			str = "";
+		}
+		
+	private:
+		std::size_t m_rc;
+		std::size_t m_sz;
+		char* str;
+};
+
+typedef String* StringPtr;
 int
 main() {
-
     StringPtr sp1 = new String("hello");
     StringPtr sp2; // Points to nullptr.
 
@@ -50,6 +89,7 @@ main() {
     StringPtr sp5 = new String(", ");
     StringPtr sp6 = new String("two");
     std::cout << (*sp4 + *sp5 + *sp6) << std::endl;
+    
 }
 
 
