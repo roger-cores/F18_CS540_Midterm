@@ -38,9 +38,11 @@ class BigInt {
 		}
 		BigInt BigInt::operator+(BigInt const &b) const {
 			
+			return b;
 		}
 		BigInt BigInt::operator+(int const &i) const {
 			
+			return b;
 		}
 		BigInt &operator=(const BigInt &s) {
 			free(number);

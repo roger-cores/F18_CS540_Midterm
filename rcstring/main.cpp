@@ -39,6 +39,10 @@ class String {
 			str = strdup(s.str);
 			m_sz = s.m_sz;
 		}
+		String &operator=(const std::nullptr_t) {
+			free(str);
+			return NULL;
+		}
 		const char * &operator*() {
 			return str;
 		}
