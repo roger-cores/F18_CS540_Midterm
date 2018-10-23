@@ -56,6 +56,7 @@ class String {
 		void clear() {
 			free(str);
 			str = "";
+			m_sz = 0;
 		}
 		
 	private:
